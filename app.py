@@ -5,7 +5,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 from uuid import uuid4
 from flask_cors import CORS, cross_origin
-from config import ApplicationConfig
+from sqlalchemy import create_engine
+from config import ApplicationConfig, uri
 
 
 app = Flask(__name__)
@@ -16,7 +17,10 @@ server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
 
-
+if uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql://")
+    
+engine = create_engine(uri, echo=True)
 
 
 def get_uuid():
