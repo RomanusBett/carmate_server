@@ -4,13 +4,6 @@ import redis
 
 load_dotenv()
 
-uri = os.getenv('SQLALCHEMY_DATABASE_URI')
-if uri:
-    if uri.startswith('postgres://'):
-        uri = uri.replace('postgres://', 'postgresql://', 1)
-else:
-    uri = 'postgresql://bett:2019@localhost:10000/bett'
-
 class ApplicationConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
 
