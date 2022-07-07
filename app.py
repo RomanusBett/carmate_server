@@ -6,7 +6,6 @@ from flask_session import Session
 from uuid import uuid4
 from flask_cors import CORS, cross_origin
 from config import ApplicationConfig
-from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -14,10 +13,8 @@ app.config.from_object(ApplicationConfig)
 bcrypt = Bcrypt(app)
 CORS(app, supports_credentials=True)
 server_session = Session(app)
-migrate = Migrate()
 db = SQLAlchemy(app)
 db.init_app(app)
-migrate.init_app(app, db)
 
 
 
