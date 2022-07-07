@@ -17,6 +17,9 @@ db = SQLAlchemy(app)
 db.init_app(app)
 
 
+
+
+
 def get_uuid():
     return uuid4().hex
 
