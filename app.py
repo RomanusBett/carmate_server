@@ -6,7 +6,7 @@ from flask_session import Session
 from uuid import uuid4
 from flask_cors import CORS, cross_origin
 from sqlalchemy import create_engine
-from config import ApplicationConfig, uri
+from config import ApplicationConfig
 
 
 app = Flask(__name__)
@@ -16,10 +16,7 @@ CORS(app, supports_credentials=True)
 server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
-
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://")
-    
+uri={'db.url':'postgresql://plrvnfnhmkfxmq:ebca9231c476d7d75eadf248e024f74f65e319f416d6357e6cde977c7b2ea790@ec2-44-205-41-76.compute-1.amazonaws.com:5432/d238lfqrimedtp'}
 engine = create_engine(uri, echo=True)
 
 
