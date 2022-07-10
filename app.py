@@ -15,7 +15,6 @@ CORS(app, supports_credentials=True)
 server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
-cors = CORS(app, resources={r"/foo": {"origins": "http://localhost:port"}})
 
 
 
@@ -39,8 +38,6 @@ class User(db.Model):
         return "<user %r>" % self.email
     
 @app.route("/register", methods=['POST'])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
-
 def register_user():
    email = request.json["email"]
    password  = request.json["password"]
@@ -76,7 +73,6 @@ def get_user():
     })
 
 @app.route("/login", methods=['POST'])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def login_user():
     email = request.json["email"]
     password  = request.json["password"]
@@ -98,7 +94,6 @@ def login_user():
     })
 
 @app.route("/@me")
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def get_current_user(): 
     user_id = session.get("user_id")
 
@@ -110,7 +105,6 @@ def get_current_user():
         "id": user.id,
         "email": user.email
     }) 
-
 
 @app.route('/logout', methods=['POST'])
 def logout_user():
