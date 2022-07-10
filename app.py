@@ -38,7 +38,6 @@ class User(db.Model):
         return "<user %r>" % self.email
     
 @app.route("/register", methods=['POST'])
-@cross_origin(origins='*', allow_headers=['Content-Type'])
 def register_user():
    email = request.json["email"]
    password  = request.json["password"]
@@ -62,7 +61,6 @@ def register_user():
        })
 
 @app.route("/about")
-@cross_origin(origins='*', allow_headers=['Content-Type'])
 def get_user():
     user_id=session.get("user_id")
 
@@ -75,8 +73,6 @@ def get_user():
     })
 
 @app.route("/login", methods=['POST'])
-@cross_origin(origins='*', allow_headers=['Content-Type'])
-
 def login_user():
     email = request.json["email"]
     password  = request.json["password"]
@@ -98,8 +94,6 @@ def login_user():
     })
 
 @app.route("/@me")
-@cross_origin(origins='*', allow_headers=['Content-Type'])
-
 def get_current_user(): 
     user_id = session.get("user_id")
 
@@ -113,8 +107,6 @@ def get_current_user():
     }) 
 
 @app.route('/logout', methods=['POST'])
-@cross_origin(origins='*', allow_headers=['Content-Type'])
-
 def logout_user():
     session.pop("user_id")
     return "200"
