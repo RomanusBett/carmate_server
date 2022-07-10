@@ -6,6 +6,7 @@ from flask_session import Session
 from uuid import uuid4
 from flask_cors import CORS, cross_origin
 from config import ApplicationConfig
+from flask_migrate import Migrate
 
 
 app = Flask(__name__)
@@ -15,8 +16,7 @@ CORS(app, supports_credentials=True)
 server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
-
-
+migrate = Migrate(app, db)
 
 
 def get_uuid():
@@ -105,11 +105,12 @@ def get_current_user():
         "id": user.id,
         "email": user.email
     }) 
-
 @app.route('/logout', methods=['POST'])
 def logout_user():
     session.pop("user_id")
     return "200"
+
+
 if __name__ == "__main__":
 
     app.run(debug=True)
