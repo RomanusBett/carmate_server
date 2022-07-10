@@ -13,7 +13,7 @@ redis_url=os.getenv("REDIS_URL")
 
 class ApplicationConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
-
+    CORS_HEADERS = "Content-Type"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_DATABASE_URI = uri or 'postgresql+psycopg2://bett:2019@localhost/bett'
