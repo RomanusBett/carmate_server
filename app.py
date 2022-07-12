@@ -96,7 +96,6 @@ def login_user():
 @app.route("/@me")
 def get_current_user(): 
     user_id = session.get("user_id")
-    print(session.Value)
 
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
