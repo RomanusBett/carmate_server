@@ -11,13 +11,13 @@ from config import ApplicationConfig
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 bcrypt = Bcrypt(app)
-CORS(app, qsupports_credentials=True)
+CORS(app, supports_credentials=True)
 server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
 
-app.set("trust proxy")
-app.use(cross_origin(origin="*"))
+
+
 
 def get_uuid():
     return uuid4().hex
@@ -96,7 +96,7 @@ def login_user():
 @app.route("/@me")
 def get_current_user(): 
     user_id = session.get("user_id")
-    print(user_id)
+    print(session.Value)
 
     if not user_id:
         return jsonify({"error": "Unauthorized"}), 401
