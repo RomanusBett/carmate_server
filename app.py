@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 db.init_app(app)
 
 app.set("trust proxy")
-app.use(cross_origin(origin="*", supports_credentials=True))
+app.use(cross_origin(origin="*"))
 
 def get_uuid():
     return uuid4().hex
