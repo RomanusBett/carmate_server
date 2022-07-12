@@ -11,7 +11,7 @@ from config import ApplicationConfig
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True)
+CORS(app, supports_credentials=True,)
 server_session = Session(app)
 db = SQLAlchemy(app)
 db.init_app(app)
