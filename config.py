@@ -15,7 +15,7 @@ class ApplicationConfig:
     SECRET_KEY = os.environ["SECRET_KEY"]
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ECHO = True
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://bett:2019@localhost/bett'
+    SQLALCHEMY_DATABASE_URI = uri or 'postgresql+psycopg2://bett:2019@localhost/bett'
     SESSION_TYPE = "redis"
     SESSION_PERMANENT = False
     SESSION_USE_SIGNER = True
